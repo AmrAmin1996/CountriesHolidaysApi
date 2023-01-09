@@ -1,11 +1,25 @@
-﻿namespace CountriesHolidaysApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+
+namespace CountriesHolidaysApi.Models
 {
     public class Holiday
     {
+        [Key]
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string HolidayName { get; set; } = string.Empty;
+
+        [DataType(DataType.Date)]
+        public DateTime StartDay { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime EndDay { get; set; }
+
         public int CountryId { get; set; }
+        [ForeignKey("Id")]
+
+        public Country? Country { get; set; }
+
     }
-    }
+
 }
