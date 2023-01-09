@@ -5,8 +5,11 @@ namespace CountriesHolidaysApi.Services.CountryService
 {
     public interface ICountryService
     {
-        Task<IActionResult> GetAllCountries();
+        Task<IActionResult> SyncCountries();
 
-        
+        Task<ActionResult<List<Country>>?> GetAllCountriesWithPagination(int pageNumber);
+
+
+
     }
 }

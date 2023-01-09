@@ -60,7 +60,22 @@ namespace CountriesHolidaysApi.Controllers
 
         }
 
-        
+        [HttpGet("{pageNumber}")]
+        public async Task<ActionResult<List<Country>>> GetAllCountriesWithPagination(int pageNumber)
+        {
+            if (pageNumber < 1)
+            {
+                return BadRequest("Page must be bigger than 1");
+            }
+            var offset = (pageNumber - 1) * 50;
+
+            var query =
+            from c in _context.Countries
+            select c ;
+            //limit offset,50;
+            var countries = await _context.Countries.ToListAsync();
+            return countries; 
+        }
         /* private readonly ICountryService _countryService;
 
          public CountryController(ICountryService countryService)
