@@ -24,11 +24,11 @@ namespace CountriesHolidaysApi.Migrations
 
             modelBuilder.Entity("CountriesHolidaysApi.Models.Country", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CountryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CountryId"));
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -38,7 +38,7 @@ namespace CountriesHolidaysApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CountryId");
 
                     b.ToTable("Countries");
                 });
@@ -46,7 +46,10 @@ namespace CountriesHolidaysApi.Migrations
             modelBuilder.Entity("CountriesHolidaysApi.Models.Holiday", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CountryId")
                         .HasColumnType("int");
@@ -63,6 +66,8 @@ namespace CountriesHolidaysApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Holidays");
                 });
 
@@ -70,7 +75,7 @@ namespace CountriesHolidaysApi.Migrations
                 {
                     b.HasOne("CountriesHolidaysApi.Models.Country", "Country")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

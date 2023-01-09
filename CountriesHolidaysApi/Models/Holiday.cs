@@ -16,7 +16,7 @@ namespace CountriesHolidaysApi.Models
         public DateTime EndDay { get; set; }
 
         public int CountryId { get; set; }
-        [ForeignKey("Id")]
+        [ForeignKey("CountryId")]
 
         public Country? Country { get; set; }
 

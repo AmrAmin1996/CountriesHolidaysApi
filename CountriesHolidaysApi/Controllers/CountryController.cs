@@ -37,8 +37,8 @@ namespace CountriesHolidaysApi.Controllers
                 if (res.IsSuccessStatusCode)
                 {
                     var CountryData = await res.Content.ReadAsStringAsync();
-                    dynamic CountriesJsonObj = JsonConvert.DeserializeObject(CountryData)!;
-                     foreach (var countryObj in CountriesJsonObj)
+                    dynamic CountriesObj = JsonConvert.DeserializeObject(CountryData)!;
+                     foreach (var countryObj in CountriesObj)
                      {
 
 
